@@ -40,7 +40,8 @@ public class MainApp {
          System.out.println();
 
       }
-
+      System.out.println("Find \"peugeot 777\"");
+      System.out.println(userService.carBoss("peugeot", "777"));
       context.close();
    }
 }

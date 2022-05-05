@@ -38,4 +38,10 @@ public class UserServiceImp implements UserService {
    public List<Car> listCars() {
       return userDao.listCars();
    }
+
+   @Transactional
+   @Override
+   public User carBoss(String car_model, String car_series){
+      return userDao.carBoss(car_model, car_series);
+   }
 }

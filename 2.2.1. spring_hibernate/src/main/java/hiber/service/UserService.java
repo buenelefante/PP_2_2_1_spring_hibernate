@@ -10,4 +10,5 @@ public interface UserService {
     List<User> listUsers();
     void add(Car car);
     List<Car> listCars();
+    User carBoss(String car_model, String car_series);
 }

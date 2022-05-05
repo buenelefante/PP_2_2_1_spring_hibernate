@@ -11,4 +11,6 @@ public interface UserDao {
 
    void add(Car car);
    List<Car> listCars();
+
+   User carBoss(String car_model, String car_series);
 }
