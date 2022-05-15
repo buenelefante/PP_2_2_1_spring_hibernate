@@ -12,46 +12,48 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-   @Autowired
-   private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-   @Override
-   public void add(User user) {
-      sessionFactory.getCurrentSession().save(user);
-   }
+    @Override
+    public void add(User user) {
+        sessionFactory.getCurrentSession().save(user);
+    }
 
-   @Override
-   @SuppressWarnings("unchecked")
-   public List<User> listUsers() {
-      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-      return query.getResultList();
-   }
-   @Override
-   public void add(Car car) {
-      sessionFactory.getCurrentSession().save(car);
-   }
-   @Override
-   @SuppressWarnings("unchecked")
-   public List<Car> listCars() {
-      TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("from Car");
-      return query.getResultList();
-   }
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> listUsers() {
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        return query.getResultList();
+    }
 
-   @Override
-   public User searchCar(String car_model, String car_series) {
-      TypedQuery<Car> Query = sessionFactory.getCurrentSession().createQuery("from Car where model = :car_model and series = :car_series")
-              .setParameter("car_model", car_model)
-              .setParameter("car_series", car_series);
-      List<Car> findCarList = Query.getResultList();
-      if (!findCarList.isEmpty()) {
-         Car findCar = findCarList.get(0);
-         List<User> ListUser = listUsers();
-         User FindUser = ListUser.stream()
-                 .filter(user -> user.getCar().equals(findCar))
-                 .findAny()
-                 .orElse(null);
-         return FindUser;
-      }
-      return null;
-   }
+    @Override
+    public void add(Car car) {
+        sessionFactory.getCurrentSession().save(car);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Car> listCars() {
+        TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("from Car");
+        return query.getResultList();
+    }
+
+    @Override
+    public User searchCar(String car_model, String car_series) {
+        TypedQuery<Car> Query = sessionFactory.getCurrentSession().createQuery("from Car where model = :car_model and series = :car_series")
+                .setParameter("car_model", car_model)
+                .setParameter("car_series", car_series);
+        List<Car> findCarList = Query.getResultList();
+        if (!findCarList.isEmpty()) {
+            Car findCar = findCarList.get(0);
+            List<User> ListUser = listUsers();
+            User FindUser = ListUser.stream()
+                    .filter(user -> user.getCar().equals(findCar))
+                    .findAny()
+                    .orElse(null);
+            return FindUser;
+        }
+        return null;
+    }
 }
