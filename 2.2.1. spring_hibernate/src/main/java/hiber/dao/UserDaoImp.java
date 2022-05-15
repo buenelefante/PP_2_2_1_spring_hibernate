@@ -38,7 +38,7 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public User carBoss(String car_model, String car_series) {
+   public User searchCar(String car_model, String car_series) {
       TypedQuery<Car> Query = sessionFactory.getCurrentSession().createQuery("from Car where model = :car_model and series = :car_series")
               .setParameter("car_model", car_model)
               .setParameter("car_series", car_series);
