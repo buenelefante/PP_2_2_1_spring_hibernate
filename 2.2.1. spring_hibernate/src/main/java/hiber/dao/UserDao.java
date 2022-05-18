@@ -12,5 +12,5 @@ public interface UserDao {
    void add(Car car);
    List<Car> listCars();
 
-   User searchCar(String car_model, String car_series);
+   User getUserByModelAndSeries(String car_model, String car_series);
 }

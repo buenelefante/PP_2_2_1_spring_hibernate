@@ -42,6 +42,6 @@ public class UserServiceImp implements UserService {
     @Transactional
     @Override
     public User carBoss(String car_model, String car_series) {
-        return userDao.searchCar(car_model, car_series);
+        return userDao.getUserByModelAndSeries(car_model, car_series);
     }
 }
