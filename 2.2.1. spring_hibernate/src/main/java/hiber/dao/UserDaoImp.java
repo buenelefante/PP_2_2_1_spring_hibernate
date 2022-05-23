@@ -2,6 +2,7 @@ package hiber.dao;
 
 import hiber.model.Car;
 import hiber.model.User;
+import hiber.service.UserService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,6 @@ public class UserDaoImp implements UserDao {
                     .orElse(null);
             return FindUser;
         }
-        return getUserByModelAndSeries(car_model, car_series);
+        return new User();
     }
 }
